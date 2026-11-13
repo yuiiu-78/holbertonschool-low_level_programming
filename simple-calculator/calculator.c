@@ -1,13 +1,17 @@
+
 #include <stdio.h>
 
 /**
- * main - displays a calculator menu with choice validation
+ * main - displays a calculator menu and performs addition
  *
  * Return: Always 0
  */
 int main(void)
 {
     int choice;
+    int a;
+    int b;
+    int result;
 
     do
     {
@@ -21,7 +25,18 @@ int main(void)
 
         scanf("%d", &choice);
 
-        if (choice == 0)
+        if (choice == 1)
+        {
+            printf("A: ");
+            scanf("%d", &a);
+
+            printf("B: ");
+            scanf("%d", &b);
+
+            result = a + b;
+            printf("Result: %d\n", result);
+        }
+        else if (choice == 0)
         {
             printf("Bye!\n");
         }
@@ -34,3 +49,4 @@ int main(void)
 
     return (0);
 }
+
