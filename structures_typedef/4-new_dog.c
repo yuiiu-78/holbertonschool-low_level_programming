@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 #include "dog.h"
 
 /**
@@ -12,35 +11,48 @@
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *dog;
-	char *name_copy;
-	char *owner_copy;
+    dog_t *dog;
+    char *name_copy;
+    char *owner_copy;
+    int i, name_len, owner_len;
 
-	dog = malloc(sizeof(dog_t));
-	if (dog == NULL)
-		return (NULL);
+    name_len = 0;
+    owner_len = 0;
 
-	name_copy = malloc(strlen(name) + 1);
-	if (name_copy == NULL)
-	{
-		free(dog);
-		return (NULL);
-	}
+    while (name[name_len] != '\0')
+        name_len++;
 
-	owner_copy = malloc(strlen(owner) + 1);
-	if (owner_copy == NULL)
-	{
-		free(name_copy);
-		free(dog);
-		return (NULL);
-	}
+    while (owner[owner_len] != '\0')
+        owner_len++;
 
-	strcpy(name_copy, name);
-	strcpy(owner_copy, owner);
+    dog = malloc(sizeof(dog_t));
+    if (dog == NULL)
+        return (NULL);
 
-	dog->name = name_copy;
-	dog->age = age;
-	dog->owner = owner_copy;
+    name_copy = malloc(name_len + 1);
+    if (name_copy == NULL)
+    {
+        free(dog);
+        return (NULL);
+    }
 
-	return (dog);
+    owner_copy = malloc(owner_len + 1);
+    if (owner_copy == NULL)
+    {
+        free(name_copy);
+        free(dog);
+        return (NULL);
+    }
+
+    for (i = 0; i <= name_len; i++)
+        name_copy[i] = name[i];
+
+    for (i = 0; i <= owner_len; i++)
+        owner_copy[i] = owner[i];
+
+    dog->name = name_copy;
+    dog->age = age;
+    dog->owner = owner_copy;
+
+    return (dog);
 }
